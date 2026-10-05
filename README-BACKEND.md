@@ -105,7 +105,7 @@ npm install
 Create a `.env` file in the root directory:
 
 ```env
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=https://roseve-backend.onrender.com
 VITE_RAZORPAY_KEY_ID=your_razorpay_key_id_here
 ```
 
