@@ -19,26 +19,9 @@ app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// MongoDB connection
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/ros-ve-luxury-beauty';
-const startServer = async () => {
-  try {
-    await mongoose.connect(mongoUri);
-    console.log('✅ MongoDB Connected Successfully');
-
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
-    });
-  } catch (err) {
-    console.error('❌ MongoDB Connection Error:', err.message);
-    process.exit(1);
-  }
-};
-
-startServer();
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -49,18 +32,46 @@ app.use('/api/payments', paymentRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Server is running' });
+  res.json({
+    status: 'OK',
+    message: 'Server is running'
+  });
 });
 
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err.stack);
+
   res.status(err.status || 500).json({
     message: err.message || 'Internal Server Error',
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+    ...(process.env.NODE_ENV === 'development' && {
+      stack: err.stack
+    })
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+// MongoDB connection and server startup
+const mongoUri = process.env.MONGODB_URI;
+
+if (!mongoUri) {
+  console.error('❌ MONGODB_URI is not defined');
+  process.exit(1);
+}
+
+const startServer = async () => {
+  try {
+    await mongoose.connect(mongoUri);
+
+    console.log('✅ MongoDB Connected Successfully');
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+
+  } catch (err) {
+    console.error('❌ MongoDB Connection Error:', err.message);
+    process.exit(1);
+  }
+};
+
+startServer();
