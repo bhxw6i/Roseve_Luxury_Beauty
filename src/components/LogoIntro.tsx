@@ -7,195 +7,94 @@ interface LogoIntroProps {
 
 const LogoIntro = ({ onComplete }: LogoIntroProps) => {
   useEffect(() => {
-    // Automatically transition to main site after 2.5 seconds
+    // Transition to main page after 2.2s
     const timer = setTimeout(() => {
       onComplete();
-    }, 2500);
+    }, 2200);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background cursor-pointer"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background cursor-pointer select-none overflow-hidden"
       onClick={onComplete}
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
     >
-      {/* Ambient glow background */}
+      {/* Radiant ambient glow */}
       <motion.div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-25"
         style={{
-          background: "radial-gradient(circle at center, hsl(43, 60%, 50% / 0.15) 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle at center, hsl(43, 60%, 55% / 0.2) 0%, transparent 60%)",
         }}
         initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1.2, opacity: 0.3 }}
-        transition={{ duration: 3, ease: "easeOut" }}
+        animate={{ scale: 1.3, opacity: 0.3 }}
+        transition={{ duration: 2.2, ease: "easeOut" }}
       />
 
-      <div className="relative">
-        {/* SVG Logo with stroke animation */}
-        <motion.svg
-          viewBox="0 0 400 120"
-          className="w-[300px] md:w-[400px] h-auto"
-          initial="hidden"
-          animate="visible"
-        >
-          {/* R */}
-          <motion.path
-            d="M20 100 L20 20 L50 20 Q70 20 70 40 Q70 55 55 60 L75 100"
-            fill="none"
-            stroke="hsl(43, 45%, 59%)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
-          />
-          
-          {/* o */}
-          <motion.ellipse
-            cx="100"
-            cy="70"
-            rx="20"
-            ry="25"
-            fill="none"
-            stroke="hsl(43, 45%, 59%)"
-            strokeWidth="2"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5, ease: "easeInOut" }}
-          />
-          
-          {/* s */}
-          <motion.path
-            d="M145 55 Q125 55 125 65 Q125 75 145 75 Q165 75 165 85 Q165 95 145 95"
-            fill="none"
-            stroke="hsl(43, 45%, 59%)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.7, ease: "easeInOut" }}
-          />
-          
-          {/* é */}
-          <motion.path
-            d="M180 70 L210 70 Q210 50 195 50 Q180 50 180 70 Q180 95 195 95 Q210 95 210 85"
-            fill="none"
-            stroke="hsl(43, 45%, 59%)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.9, ease: "easeInOut" }}
-          />
-          {/* Accent */}
-          <motion.path
-            d="M200 35 L210 45"
-            fill="none"
-            stroke="hsl(43, 45%, 59%)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.3, delay: 1.1, ease: "easeInOut" }}
-          />
-          
-          {/* v */}
-          <motion.path
-            d="M225 45 L245 95 L265 45"
-            fill="none"
-            stroke="hsl(43, 45%, 59%)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.2, ease: "easeInOut" }}
-          />
-          
-          {/* e */}
-          <motion.path
-            d="M280 70 L310 70 Q310 50 295 50 Q280 50 280 70 Q280 95 295 95 Q310 95 310 85"
-            fill="none"
-            stroke="hsl(43, 45%, 59%)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.4, ease: "easeInOut" }}
-          />
-        </motion.svg>
-
-        {/* Fill animation overlay */}
+      {/* Main Luxury Brand Container */}
+      <div className="relative z-10 flex flex-col items-center justify-center px-4 text-center">
+        {/* Crest icon or subtle ring */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.2, duration: 0.8 }}
+          className="w-16 h-16 mb-6 rounded-full border border-primary/30 flex items-center justify-center relative"
+          initial={{ scale: 0.6, opacity: 0, rotate: -45 }}
+          animate={{ scale: 1, opacity: 1, rotate: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 className="font-display text-5xl md:text-7xl tracking-[0.3em] text-gold-gradient">
-            Roséve
-          </h1>
+          <motion.div
+            className="w-10 h-10 rounded-full border border-primary/60"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: [0.8, 1.1, 0.8] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <span className="absolute font-display text-primary text-xl font-light italic">
+            R
+          </span>
         </motion.div>
+
+        {/* Brand Name */}
+        <motion.h1
+          className="font-display text-5xl md:text-7xl tracking-[0.25em] text-gold-gradient font-light uppercase my-2"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Roséve
+        </motion.h1>
+
+        {/* Golden Line Separator */}
+        <motion.div
+          className="h-[1px] bg-gradient-to-r from-transparent via-primary/60 to-transparent my-4"
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: "140px", opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeInOut" }}
+        />
 
         {/* Tagline */}
         <motion.p
-          className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-muted-foreground text-sm tracking-[0.5em] uppercase whitespace-nowrap"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.8, duration: 0.8 }}
+          className="text-muted-foreground text-xs md:text-sm tracking-[0.45em] uppercase font-light"
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
         >
           Luxury Skincare
         </motion.p>
       </div>
 
-      {/* Particles effect */}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 rounded-full bg-primary/30"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0],
-            y: [0, -50],
-          }}
-          transition={{
-            duration: 3,
-            delay: 1 + Math.random() * 2,
-            repeat: Infinity,
-            repeatDelay: Math.random() * 3,
-          }}
-        />
-      ))}
-
-      {/* Skip/Continue trigger */}
+      {/* Subtle Bottom Skip Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 3.5, duration: 0.5 }}
-        onAnimationComplete={() => {
-          setTimeout(onComplete, 1000);
-        }}
+        animate={{ opacity: 0.6 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
       >
-        <motion.button
-          onClick={onComplete}
-          className="text-muted-foreground text-xs tracking-widest uppercase hover:text-primary transition-colors"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Enter
-        </motion.button>
+        <span className="text-muted-foreground text-[10px] tracking-[0.3em] uppercase">
+          Tap anywhere to enter
+        </span>
       </motion.div>
     </motion.div>
   );
