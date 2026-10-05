@@ -50,13 +50,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// MongoDB connection and server startup
-const mongoUri = process.env.MONGODB_URI;
-
-if (!mongoUri) {
-  console.error('❌ MONGODB_URI is not defined');
-  process.exit(1);
-}
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/ros-ve-luxury-beauty';
 
 const startServer = async () => {
   try {

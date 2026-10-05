@@ -1,4 +1,10 @@
-const API_URL = `${import.meta.env.VITE_API_URL}/api`;
+const getApiUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const cleanUrl = envUrl.replace(/\/+$/, '');
+  return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
+};
+
+const API_URL = getApiUrl();
 
 export interface User {
   _id: string;
