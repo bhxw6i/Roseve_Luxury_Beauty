@@ -88,7 +88,7 @@ This will add 8 sample beauty products to your database.
 npm run dev
 ```
 
-The server will run on `http://localhost:5000`
+The server will run on `${import.meta.env.VITE_API_URL}`
 
 ---
 
@@ -319,7 +319,7 @@ The frontend will run on `http://localhost:5173`
 
 ### 1. Register a User
 ```bash
-POST http://localhost:5000/api/auth/register
+POST ${import.meta.env.VITE_API_URL}/api/auth/register
 Content-Type: application/json
 
 {
@@ -331,7 +331,7 @@ Content-Type: application/json
 
 ### 2. Login
 ```bash
-POST http://localhost:5000/api/auth/login
+POST ${import.meta.env.VITE_API_URL}/api/auth/login
 Content-Type: application/json
 
 {
@@ -342,7 +342,7 @@ Content-Type: application/json
 
 ### 3. Add Product to Cart
 ```bash
-POST http://localhost:5000/api/cart
+POST ${import.meta.env.VITE_API_URL}/api/cart
 Content-Type: application/json
 Authorization: Bearer <your_jwt_token>
 

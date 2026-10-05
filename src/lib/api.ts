@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 
 export interface User {
   _id: string;
@@ -56,7 +56,7 @@ class ApiClient {
 
     try {
       const response = await fetch(url, config);
-      
+
       // Handle non-JSON responses (e.g., network errors, server down)
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
