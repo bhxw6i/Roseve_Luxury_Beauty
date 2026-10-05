@@ -18,12 +18,11 @@ Create a `.env` file in the `server` directory with the following variables:
 ```env
 PORT=5000
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-JWT_EXPIRE=7d
+JWT_SECRET=rosve_beauty_super_secret_jwt_key_2025_98765
 RAZORPAY_KEY_ID=your_razorpay_key_id_here
 RAZORPAY_KEY_SECRET=your_razorpay_key_secret_here
 NODE_ENV=development
-FRONTEND_URL=http://localhost:5173
+FRONTEND_URL=https://roseveluxurybeauty.netlify.app/
 ```
 
 ### 3. MongoDB Setup
