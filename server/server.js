@@ -25,8 +25,12 @@ app.use(express.urlencoded({ extended: true }));
 // MongoDB connection
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/ros-ve-luxury-beauty';
 mongoose.connect(mongoUri)
-  .then(() => console.log('✅ MongoDB Connected'))
-  .catch(err => console.error('❌ MongoDB Connection Error:', err));
+  .then(() => {
+    console.log('✅ MongoDB Connected Successfully');
+  })
+  .catch((err) => {
+    console.error('❌ MongoDB Connection Error:', err.message);
+  });
 
 // Routes
 app.use('/api/auth', authRoutes);
