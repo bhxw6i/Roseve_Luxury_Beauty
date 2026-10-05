@@ -24,13 +24,21 @@ app.use(express.urlencoded({ extended: true }));
 
 // MongoDB connection
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/ros-ve-luxury-beauty';
-mongoose.connect(mongoUri)
-  .then(() => {
+const startServer = async () => {
+  try {
+    await mongoose.connect(mongoUri);
     console.log('✅ MongoDB Connected Successfully');
-  })
-  .catch((err) => {
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+  } catch (err) {
     console.error('❌ MongoDB Connection Error:', err.message);
-  });
+    process.exit(1);
+  }
+};
+
+startServer();
 
 // Routes
 app.use('/api/auth', authRoutes);
